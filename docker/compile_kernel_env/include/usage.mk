@@ -15,11 +15,26 @@ $(call bar)
 $(call title)
 $(call bar)
 
+Usage: 
+
+    $$ make [TARGET]
+
+    Create Docker container for building NXP i.MX6 series kernel or u-boot image environment. 
+
+    TARGET: 
+
+        <empty>                      Show this usage. 
+        help                         Show this usage. 
+        bash                         Enter container bash. 
+        status                       Show current container information. 
+	commit                       Commit container to image. 
+        push                         Push image to Docker Hub. 
+
 endef
 
 export usage_info
 
 usage help: 
-	@echo "$${usage_info}"
+	@echo "$${usage_info}" | more
 
 
