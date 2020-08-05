@@ -2,6 +2,15 @@
 .PHONY: bsp
 bsp: $(builddir)/.bsp
 
+.PHONY: packbsp
+packbsp: $(builddir) $(builddir)/.packbsp
+
+.PHONY: bsp2
+bsp2: $(builddir)/.bsp2
+
+$(builddir)/.packbsp:
+	@cd $(builddir) && tar -zcpvf $(bspname).tar.gz $(bspname)
+
 $(builddir)/.bsp: prepare $(builddir)/.prebsp \
 	$(builddir)/.createcontainer \
 	$(builddir)/.exportcontainer \
@@ -9,6 +18,10 @@ $(builddir)/.bsp: prepare $(builddir)/.prebsp \
 	$(builddir)/.bspfolders \
 	$(builddir)/.clonebspscripts \
 	$(builddir)/.clonebspimage \
+	$(builddir)/.packedrootfs \
+	$(builddir)/.postbsp
+
+$(builddir)/.bsp2: prepare $(builddir)/.prebsp \
 	$(builddir)/.packedrootfs \
 	$(builddir)/.postbsp
 
