@@ -47,7 +47,7 @@ define chrootaddons
 
 endef
 
-define unmountforchroot
+define umountforchroot
   @ \
     if [ -z "$(addonsrootfs)" ]; then echo '$$'"(addonsrootfs) needs to be defined!!" ;exit 1; fi; \
     _l="$(addonsmountlist)"; \
@@ -66,10 +66,13 @@ endef
 addonstest: 
 	$(call mountforchroot)
 	$(call chrootaddons)
-	$(call unmountforchroot)
+	$(call umountforchroot)
 
 .PHONY: addonsprepare
 addonsprepare:
 	$(call mountforchroot)
 
+.PHONY: addonspreparestop
+addonspreparestop:
+	$(call umountforchroot)
 
