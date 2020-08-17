@@ -40,6 +40,7 @@ define chrootaddons
     RUNLEVEL=1 && chroot $(addonsrootfs) apt-get install -y i2c-tools; \
     RUNLEVEL=1 && chroot $(addonsrootfs) apt-get install -y device-tree-compiler; \
     RUNLEVEL=1 && chroot $(addonsrootfs) apt-get install -y kmod; \
+    RUNLEVEL=1 && chroot $(addonsrootfs) apt-get install -y can-utils; \
     RUNLEVEL=1 && chroot $(addonsrootfs) sed -i "/^\([\#?\/]\|$$\)/ba;d;:a;" /root/.viminfo; \
     RUNLEVEL=1 && chroot $(addonsrootfs) sed -i "/^$$/ba;d;:a;" /root/.bash_history; \
     RUNLEVEL=1 && chroot $(addonsrootfs) apt-get clean; \
