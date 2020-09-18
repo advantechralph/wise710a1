@@ -8,6 +8,9 @@ packbsp: $(builddir) $(builddir)/.packbsp
 .PHONY: bsp2
 bsp2: $(builddir)/.bsp2
 
+.PHONY: ubuntubasebsp
+ubuntubasebsp: $(builddir)/.bspubuntubase
+
 $(builddir)/.packbsp:
 	@cd $(builddir) && tar -zcpvf $(bspname).tar.gz $(bspname)
 
@@ -22,6 +25,18 @@ $(builddir)/.bsp: prepare $(builddir)/.prebsp \
 	$(builddir)/.postbsp
 
 $(builddir)/.bsp2: prepare $(builddir)/.prebsp \
+	$(builddir)/.modifyrootfs \
+	$(builddir)/.packedrootfs \
+	$(builddir)/.postbsp
+
+$(builddir)/.bspubuntubase: prepare $(builddir)/.prebsp \
+	$(builddir)/.fetchubuntubase \
+	$(builddir)/.unpackubuntubase \
+	$(builddir)/.addonsubuntubase \
+	$(builddir)/.bspfolders \
+	$(builddir)/.clonebspscripts \
+	$(builddir)/.clonebspimage \
+	$(builddir)/.modifyrootfs \
 	$(builddir)/.packedrootfs \
 	$(builddir)/.postbsp
 
@@ -54,7 +69,13 @@ $(builddir)/.clonebspimage:
 	@$(call cmd,cp -apf $(spl) $(builddir)/$(bspname)/image,bsp)
 	@$(call cmd,cp -apf $(dtb) $(builddir)/$(bspname)/image,bsp)
 	@$(call cmd,cp -apf $(u-boot)/* $(builddir)/$(bspname)/image,bsp)
+
+$(builddir)/.modifyrootfs: 
+	@if [ -f "$(builddir)/rootfs/root/.viminfo" ] ; then sed -i "/^\([\#?\/]\|$$\)/ba;d;:a;" $(builddir)/rootfs/root/.viminfo; fi
+	@if [ -f $(builddir)/rootfs/root/.bash_history ] ; then sed -i "/^$$/ba;d;:a;" $(builddir)/rootfs/root/.bash_history; fi
 	@echo "$${releaseinfo}" > $(builddir)/$(bspname)/image/version
+
+ggg:
 
 $(builddir)/.packedrootfs: 
 	@$(call cmd,rm -rf $(builddir)/$(bspname)/image/$(packedrootfs),bsp)

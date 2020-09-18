@@ -1,0 +1,11 @@
+[Unit]
+Description=dmesg printk level Service
+                                                                                                                                      
+[Service]
+Type=oneshot
+ExecStart=/usr/Advantech/systemd_service/dmesg_printk_level.sh
+StandardOutput=syslog
+StandardError=inherit
+ 
+[Install]
+WantedBy=multi-user.target
