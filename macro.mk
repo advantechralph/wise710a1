@@ -14,7 +14,7 @@ scripts=$(CURRDIR)/scripts/basic
 distro=ubuntu18044
 #bspname=$(shell echo "$(modelname)_$(distro)_$(shell date "+%Y%m%d")" | sed -e 's/^./\U&/g' -e 's/_./\U&/g')
 #bspname=$(modelname)_$(distro)_$(shell date "+%Y%m%d")
-bspname=WISE-710-A1_2G_r1_Ubuntu1804_20200817
+bspname=WISE-710-A1_2G_r1_Ubuntu1804_20200828
 packedrootfs=$(distro).tar.gz
 define releaseinfo
 $(shell date +"%Y%m%d%H%M%S")
@@ -29,8 +29,14 @@ export releaseinfo
 ############################
 builddir:=$(CURRDIR)/build
 logdir:=$(builddir)/log
+toolsdir:=$(CURRDIR)/tools
 ############################
 #          docker          #
 ############################
 repo:=advantechralph/work:wise710a1
 container:=$(modelname)_bsp
+############################
+#       Ubuntu Base        #
+############################
+ubuntubaseurl=http://cdimage.ubuntu.com/ubuntu-base/releases/18.04/release/ubuntu-base-18.04-base-armhf.tar.gz
+cp210xsdkurl=https://www.silabs.com/documents/public/software/USBXpressHostSDK-Linux.tar

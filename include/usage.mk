@@ -17,22 +17,45 @@ $(call bar)
 
 Create BSP: 
 
-  $$ make bsp
+  BSP from docker image: 
 
-  or 
+    $$ make bsp
 
-  $$ make modelname=tpc71wn10pa_soreel bsp
+    or 
 
-  or 
+    $$ make modelname=tpc71wn10pa_soreel bsp
 
-  $$ make modelname=tpc71wn21pa bsp
+    or 
+
+    $$ make modelname=tpc71wn21pa bsp
+
+  BSP from Ubuntu base image with addons: 
+
+    $$ make ubuntubasebsp
+
+Makefiles: 
+
+  include/
+  ├── addons.mk                      # Based on Ubuntu base to do add-on
+  ├── bsp.mk
+  ├── builddir.mk
+  ├── clean.mk
+  ├── cmd.mk
+  ├── debug.mk
+  ├── docker.mk
+  ├── info.mk
+  ├── log.mk
+  ├── prepare.mk
+  ├── test.mk
+  └── usage.mk
+
 
 endef
 
 export usage_info
 
 usage help: 
-	@echo "$${usage_info}"
+	@echo "$${usage_info}" | more
 
 default: usage;
 
