@@ -14,7 +14,7 @@ scripts=$(CURRDIR)/scripts/basic
 distro=ubuntu18044
 #bspname=$(shell echo "$(modelname)_$(distro)_$(shell date "+%Y%m%d")" | sed -e 's/^./\U&/g' -e 's/_./\U&/g')
 #bspname=$(modelname)_$(distro)_$(shell date "+%Y%m%d")
-bspname=WISE-710-A1_2G_r1_Ubuntu1804_20200924
+bspname=WISE-710-A1_2G_r1_Ubuntu1804_20201109
 packedrootfs=$(distro).tar.gz
 define releaseinfo
 $(shell date +"%Y%m%d%H%M%S")
