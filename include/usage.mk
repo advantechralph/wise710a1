@@ -15,47 +15,34 @@ $(call bar)
 $(call title)
 $(call bar)
 
-Create BSP: 
-
-  BSP from docker image: 
-
+  Create BSP: 
+  
     $$ make bsp
-
+  
     or 
-
+  
     $$ make modelname=tpc71wn10pa_soreel bsp
-
+  
     or 
-
+  
     $$ make modelname=tpc71wn21pa bsp
 
-  BSP from Ubuntu base image with addons: 
 
-    $$ make ubuntubasebsp
+  Supported Model Name: 
 
-Makefiles: 
+    $(shell echo $(shell find models -mindepth 1 -maxdepth 1 -name "*.mk" -printf "%P\n" | sed -e "s/\.mk *$$//g") | sed "s/ /, /g")
 
-  include/
-  ├── addons.mk                      # Based on Ubuntu base to do add-on
-  ├── bsp.mk
-  ├── builddir.mk
-  ├── clean.mk
-  ├── cmd.mk
-  ├── debug.mk
-  ├── docker.mk
-  ├── info.mk
-  ├── log.mk
-  ├── prepare.mk
-  ├── test.mk
-  └── usage.mk
+  Check information: 
 
+    ex: 
+      make info modelname=tpc71wn21pa_soreel
 
 endef
 
 export usage_info
 
 usage help: 
-	@echo "$${usage_info}" | more
+	@echo "$${usage_info}"
 
 default: usage;
 

@@ -1,13 +1,14 @@
 
 .PHONY: info
 info: 
-	@echo "============== path ==============="
 	@echo CURRDIR=$(CURRDIR)
+	@echo modelname=$(modelname)
 	@echo builddir=$(builddir)
-	@echo "=============== bsp ==============="
 	@echo bspname=$(bspname)
-	@echo rootfs=$(builddir)/rootfs
-	@echo "============= docker  ============="
-	@echo repo=$(repo)
-	@echo container=$(container)
+	@echo dtb=$(dtb)
+	@echo spl=$(spl)
+
+.PHONY: models
+models: 
+	@echo $$(find models -mindepth 1 -maxdepth 1 -name "*.mk" -printf "%P\n" | sed -e "s/\.mk *$$//g")
 

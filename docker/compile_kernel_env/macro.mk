@@ -8,5 +8,5 @@ logdir:=$(builddir)/log
 ############################
 #          docker          #
 ############################
-repo:=advantechralph/work:tpc71w_compile_kernel_env
+repo:=advantechtsu/work:wise710a1_compile_kernel_env
 container:=tpc71w_compile_kernel_env
