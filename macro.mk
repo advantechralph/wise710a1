@@ -33,7 +33,7 @@ toolsdir:=$(CURRDIR)/tools
 ############################
 #          docker          #
 ############################
-repo:=advantechralph/work:wise710a1
+repo:=advantechtsu/work:wise710a1
 container:=$(modelname)_bsp
 ############################
 #       Ubuntu Base        #
