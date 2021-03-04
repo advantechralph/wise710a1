@@ -7,6 +7,7 @@ info:
 	@echo bspname=$(bspname)
 	@echo dtb=$(dtb)
 	@echo spl=$(spl)
+	@echo u-boot=$(u-boot)
 
 .PHONY: models
 models: 
